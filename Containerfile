@@ -13,10 +13,7 @@ ENV PYTHON_VERSION=3.14 \
     STI_SCRIPTS_PATH=/usr/libexec/s2i \
     APP_ROOT=/opt/app-root \
     HOME=/opt/app-root/src 
-
 ENV PATH=$APP_ROOT/bin:$HOME/bin:$HOME/.local/bin:$PATH
-
-# Ensure the virtual environment is active in interactive shells
 ENV BASH_ENV=${APP_ROOT}/bin/activate \
     ENV=${APP_ROOT}/bin/activate \
     PROMPT_COMMAND=". ${APP_ROOT}/bin/activate"
@@ -25,11 +22,12 @@ LABEL io.k8s.display-name="Python 3.14" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,python,python314,python-314,rh-python314" \
 
+USER 0
+
 COPY .s2i/ $STI_SCRIPTS_PATH
+COPY bin/ /usr/bin/
 
 WORKDIR ${HOME}
-
-USER 0
 
 ADD source ${APP_ROOT}
 
@@ -38,8 +36,6 @@ RUN python3.14 -m venv ${APP_ROOT} && \
     rm -r /opt/wheels && \
     chown -R 1001:0 ${APP_ROOT} && \
     fix-permissions ${APP_ROOT} -P
-
-COPY myapp.py /app/
 
 USER 1001
 
