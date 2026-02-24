@@ -7,9 +7,9 @@ Source 2 image scripts are coming the [sclorg repository](https://github.com/scl
 ## Usage
 
 ## Building the base image
-The Containerfile in this repository will add s2i scripts needed to deal with virtual environments and running Python web applications in container as regular users.
+The Containerfile in this repository will take a distroless Python image and add s2i scripts needed to deal with virtual environments and running Python web applications in a container as a regular user.
 
-Build this image then use it as a base for your applications.
+Build the base image:
 ```shell
 podman build -t distroless-python:3.14 .
 ```
