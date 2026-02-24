@@ -20,7 +20,7 @@ ENV BASH_ENV=${APP_ROOT}/bin/activate \
 
 LABEL io.k8s.display-name="Python 3.14" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,python,python314,python-314,rh-python314" \
+      io.openshift.tags="builder,python,python314,python-314,rh-python314"
 
 USER 0
 
