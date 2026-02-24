@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cat <<EOF
+This is a S2I python-3.13-minimal distroless base image:
+There are multiple ways how to run the image, see documentation at:
+https://github.com/tux-o-matic/distroless-python/README.md
+
+You can then run the resulting image via:
+oc get pods
+oc exec <pod> -- curl 127.0.0.1:8080
+EOF
