@@ -25,6 +25,8 @@ USER 0
 COPY .s2i/ $STI_SCRIPTS_PATH
 COPY bin/ /usr/bin/
 
+COPY root/ /
+
 WORKDIR ${HOME}
 
 USER 1001
