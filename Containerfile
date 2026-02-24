@@ -29,14 +29,6 @@ COPY bin/ /usr/bin/
 
 WORKDIR ${HOME}
 
-ADD source ${APP_ROOT}
-
-RUN python3.14 -m venv ${APP_ROOT} && \
-    ${APP_ROOT}/bin/pip install /opt/wheels/pip-* && \
-    rm -r /opt/wheels && \
-    chown -R 1001:0 ${APP_ROOT} && \
-    fix-permissions ${APP_ROOT} -P
-
 USER 1001
 
-CMD /usr/libexec/s2i/run
+CMD /usr/libexec/s2i/usage
