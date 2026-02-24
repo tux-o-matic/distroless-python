@@ -15,13 +15,14 @@ podman build -t distroless-python:3.14 .
 ```
 
 ## Building your application
-Reference the base image built in the previous step in the `FROM` command then add your code from the `source` directory and use the s2i `assemble` script to let pip install your dependencies.
+Reference the base image built in the previous step in the `FROM` command then add your code from the `source` directory to the temporary folder where the s2i script expects to find your code.
+Then use the s2i `assemble` script as root to let pip install your dependencies before switching back to a regular user.
 ```shell
 FROM localhost/distroless-python:3.14
 
-USER 0
+ADD source /tmp/src/
 
-ADD source ${APP_ROOT}
+USER 0
 
 RUN $STI_SCRIPTS_PATH/assemble
 
