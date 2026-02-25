@@ -1,4 +1,4 @@
-# distroless-python
+# Distroless container image for Python
 Build Python web app on [distroless images](https://quay.io/repository/hummingbird/python).
 Between virtual environment, pip and limited user permissions, getting a Python web app to run properly in a container requires more than just having Python in your base image.
 
